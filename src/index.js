@@ -3,11 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import firebase from 'firebase'
+import 'firebase/firestore'
+import 'firebase/auth'
+import {createContext} from 'react'
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBKmqE2zWUtro4kYqyYsFMLREAjjcGq0fg",
+    authDomain: "chatick-a39e6.firebaseapp.com",
+    projectId: "chatick-a39e6",
+    storageBucket: "chatick-a39e6.appspot.com",
+    messagingSenderId: "781321853855",
+    appId: "1:781321853855:web:d8b5995d243ef505a8bbaa",
+    measurementId: "G-3L7EDZCTL0"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+export  const Context = createContext(null)
+  const auth = firebase.auth()
+  const firestore = firebase.firestore()
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Context.Provider value={{firebase, auth, firestore}}>
     <App />
-  </React.StrictMode>,
+  </Context.Provider>,
   document.getElementById('root')
 );
 
